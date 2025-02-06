@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - Portfólio de Eric Mello</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header / Navbar -->
+        <header>
+            <div class="navbar">
+                <div class="logo" id="#index">
+                    <img src="./assets/logo.png" alt="Logo" />
+                </div>
+                <nav class="nav-links">
+                    <a href="index.html">Inicio</a>
+                    <a href="sobre.html">Sobre</a>
+                    <a href="projetos.html">Portifólio</a>
+                    <a href="contato.html">Contatos</a>
+                </nav>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/webityagencia/#"><img src="./assets/icon/Button container.png"
+                            alt="Social 1" /></a>
+                    <a href="https://www.linkedin.com/in/eric-mello/"><img
+                            src="./assets/icon/divsectioncmpwtcontainer.png" alt="Social 2" /></a>
+                    <a href="#"><img src="./assets/icon/divsectionfpdiukcontainer.png" alt="GitHub" /></a>
+                    <a href="https://github.com/Eric-webity"><img src="./assets/icon/divsectionocgcontainer.png"
+                            alt="Social 3" /></a>
+                    <a href="http://wa.me/+5583998000756"><img src="./assets/icon/divsectionxqghtcontainer.png"
+                            alt="Social 4" /></a>
+                </div>
+                <div class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <!-- Menu Mobile -->
+            <div class="mobile-menu">
+                <a href="index.html">Inicio</a>
+                <a href="sobre.html">Sobre</a>
+                <a href="projetos.html">Portifólio</a>
+                <a href="contato.html">Contatos</a>
+            </div>
+        </header>
+
+        <!-- Seção de Contato -->
+        <main>
+            <section id="contato" class="contato-container">
+                <h1>Entre em Contato</h1>
+                <p>Ficarei feliz em conversar sobre seu projeto ou responder qualquer dúvida.</p>
+
+                <div class="contato-conteudo">
+                    <!-- Formulário de Contato -->
+                    <form class="contato-form" action="https://formsubmit.co/ericmello.mkt@gmail.com" method="POST">
+                        <input type="hidden" name="_captcha" value="false"> <!-- Desativa CAPTCHA -->
+                        <input type="hidden" name="_next" value="https://seusite.com/obrigado.html">
+                        <!-- Redirecionamento -->
+
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input type="text" id="nome" name="name" required placeholder="Seu Nome">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" required placeholder="seuemail@email.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mensagem">Mensagem</label>
+                            <textarea id="mensagem" name="message" rows="5" required
+                                placeholder="Escreva sua mensagem aqui..."></textarea>
+                        </div>
+
+                        <button type="submit" class="contato-btn">Enviar Mensagem</button>
+                    </form>
+
+
+                    <!-- Informações de Contato -->
+                    <div class="contato-info">
+                        <h3>Informações</h3>
+                        <p><strong>Email:</strong> <a href="mailto:ericmello.mkt@gmail.com">ericmello.mkt@gmail.com</a>
+                        </p>
+                        <p><strong>Telefone:</strong> <a href="tel:+5583998000756">(83) 99800-0756</a></p>
+                        <p><strong>Endereço:</strong> João Pessoa/PB, Brasil</p>
+                        <div class="contato-social">
+                            <a href="https://www.instagram.com/webityagencia/" target="_blank">
+                                <img src="./assets/icon/Button container.png" alt="Instagram">
+                            </a>
+                            <a href="https://www.linkedin.com/in/eric-mello/" target="_blank">
+                                <img src="./assets/icon/divsectioncmpwtcontainer.png" alt="LinkedIn">
+                            </a>
+                            <a href="https://github.com/Eric-webity" target="_blank">
+                                <img src="./assets/icon/divsectionocgcontainer.png" alt="GitHub">
+                            </a>
+                            <a href="http://wa.me/+5583998000756" target="_blank">
+                                <img src="./assets/icon/divsectionxqghtcontainer.png" alt="WhatsApp">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <p>&copy;2024 Eric Mello</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/webityagencia/#"><img src="./assets/icon/Button container.png"
+                            alt="Social 1" /></a>
+                    <a href="https://www.linkedin.com/in/eric-mello/"><img
+                            src="./assets/icon/divsectioncmpwtcontainer.png" alt="Social 2" /></a>
+                    <a href="#"><img src="./assets/icon/divsectionfpdiukcontainer.png" alt="GitHub" /></a>
+                    <a href="https://github.com/Eric-webity"><img src="./assets/icon/divsectionocgcontainer.png"
+                            alt="Social 3" /></a>
+                    <a href="http://wa.me/+5583998000756"><img src="./assets/icon/divsectionxqghtcontainer.png"
+                            alt="Social 4" /></a>
+                </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

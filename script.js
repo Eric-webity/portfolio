@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-    /*** MENU MOBILE ***/
+    console.log("JavaScript carregado!");
+
+    /*** MENU MOBILE RESPONSIVO ***/
     const menuToggle = document.querySelector(".mobile-menu-toggle");
     const mobileMenu = document.querySelector(".mobile-menu");
     const menuLinks = document.querySelectorAll(".mobile-menu a");
@@ -9,49 +11,134 @@ document.addEventListener("DOMContentLoaded", function () {
             mobileMenu.classList.toggle("active");
         });
 
-        // Fecha o menu ao clicar em um link
-        menuLinks.forEach(link => {
+        // Fechar menu ao clicar em qualquer link dentro dele
+        document.querySelectorAll(".mobile-menu a").forEach(link => {
             link.addEventListener("click", function () {
                 mobileMenu.classList.remove("active");
             });
         });
     }
 
-    /*** NAVEGAÇÃO SUAVE PARA "PROJETOS" ***/
-    const linkProjetos = document.querySelector("#link-projetos");
-    const projetosSection = document.querySelector("#projetos");
+    /*** NAVEGAÇÃO SUAVE PARA ÂNCORAS ***/
+    const linksInternos = document.querySelectorAll("a[href^='#']");
 
-    if (linkProjetos && projetosSection) {
-        linkProjetos.addEventListener("click", function (e) {
-            e.preventDefault();
-            projetosSection.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            });
+    linksInternos.forEach(link => {
+        link.addEventListener("click", function (e) {
+            const destino = document.querySelector(this.getAttribute("href"));
+            if (destino) {
+                e.preventDefault();
+                destino.scrollIntoView({ behavior: "smooth", block: "start" });
 
-            // Fecha o menu mobile ao clicar no link (se estiver aberto)
-            if (mobileMenu.classList.contains("active")) {
-                mobileMenu.classList.remove("active");
+                if (mobileMenu.classList.contains("active")) {
+                    mobileMenu.classList.remove("active");
+                }
             }
         });
-    }
+    });
+
+    /*** MODO ATIVO PARA OS LINKS DO MENU ***/
+    const navLinks = document.querySelectorAll(".nav-links a, .mobile-menu a");
+    const sections = document.querySelectorAll("section");
+
+    window.addEventListener("scroll", () => {
+        let current = "";
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (window.scrollY >= sectionTop - 50) {
+                current = section.getAttribute("id");
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === `#${current}`) {
+                link.classList.add("active");
+            }
+        });
+    });
 
     /*** CARROSSEL DE DEPOIMENTOS ***/
     const reviews = document.querySelectorAll(".review-card");
-    if (reviews.length > 1) {
-        let currentReview = 0;
-        const reviewCount = reviews.length;
-        const intervalTime = 5000; // 5 segundos
+    const prevArrow = document.querySelector(".prev-arrow");
+    const nextArrow = document.querySelector(".next-arrow");
+    const dotsContainer = document.querySelector(".review-dots");
 
-        setInterval(function () {
-            // Remove 'active' do depoimento atual
+    let currentReview = 0;
+    const reviewCount = reviews.length;
+    const intervalTime = 5000;
+    let carouselInterval;
+
+    if (reviewCount > 0) {
+        // Criar os indicadores (bolinhas)
+        if (dotsContainer && reviewCount > 1) {
+            for (let i = 0; i < reviewCount; i++) {
+                const dot = document.createElement("span");
+                dot.classList.add("dot");
+                if (i === 0) {
+                    dot.classList.add("active");
+                }
+                dot.setAttribute("data-index", i);
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        const dots = document.querySelectorAll(".review-dots .dot");
+
+        function showReview(index) {
             reviews[currentReview].classList.remove("active");
+            dots[currentReview].classList.remove("active");
 
-            // Calcula o índice do próximo depoimento
-            currentReview = (currentReview + 1) % reviewCount;
+            currentReview = index;
 
-            // Adiciona 'active' ao próximo depoimento
             reviews[currentReview].classList.add("active");
-        }, intervalTime);
+            dots[currentReview].classList.add("active");
+        }
+
+        function nextReview() {
+            let nextIndex = (currentReview + 1) % reviewCount;
+            showReview(nextIndex);
+        }
+
+        function prevReview() {
+            let prevIndex = (currentReview - 1 + reviewCount) % reviewCount;
+            showReview(prevIndex);
+        }
+
+        if (nextArrow) {
+            nextArrow.addEventListener("click", function () {
+                nextReview();
+                resetInterval();
+            });
+        }
+
+        if (prevArrow) {
+            prevArrow.addEventListener("click", function () {
+                prevReview();
+                resetInterval();
+            });
+        }
+
+        dots.forEach((dot) => {
+            dot.addEventListener("click", function () {
+                const index = parseInt(this.getAttribute("data-index"));
+                showReview(index);
+                resetInterval();
+            });
+        });
+
+        function startInterval() {
+            carouselInterval = setInterval(nextReview, intervalTime);
+        }
+
+        function resetInterval() {
+            clearInterval(carouselInterval);
+            startInterval();
+        }
+
+        if (reviewCount > 1) {
+            startInterval();
+        }
     }
 });
